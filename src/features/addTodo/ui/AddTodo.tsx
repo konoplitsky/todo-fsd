@@ -1,31 +1,32 @@
-import { Input, Button, Flex, Box } from '@mantine/core';
-import { useTodos, useTodosActions } from '@/entities/todos/model';
-import { type ChangeEvent, useState } from 'react';
-import { usePostCreateTodoMutation } from '@/entities/todos/api';
+import { useState } from 'react';
+import type { ChangeEvent } from 'react';
 
-const TODO = {
+import { Input, Button, Flex, Box } from '@mantine/core';
+import { useAddTodo } from '../model/useAddTodo';
+
+type CreateTodo = Omit<Todo, 'id' | 'checked'>;
+
+const TODO: CreateTodo = {
   name: '',
   description: ''
 };
 
 export const AddTodo = () => {
-  const [todo, setTodo] = useState(TODO);
-  const todos = useTodos();
-
-  console.log(todos);
-
-  const createTodo = usePostCreateTodoMutation();
-  const { addTodo } = useTodosActions();
+  const [todo, setTodo] = useState<CreateTodo>(TODO);
+  const { onAddTodo } = useAddTodo();
 
   const onClick = async () => {
-    const result = await createTodo.mutateAsync(todo);
-    addTodo(result);
+    await onAddTodo(todo);
     setTodo(TODO);
   };
 
   const onChange = (e: ChangeEvent<HTMLInputElement>) => {
-    const { value, name } = e.target;
-    setTodo({ ...todo, [name]: value });
+    const { name, value } = e.target;
+
+    setTodo((prev) => ({
+      ...prev,
+      [name]: value
+    }));
   };
 
   return (
@@ -38,6 +39,7 @@ export const AddTodo = () => {
           onChange={onChange}
           style={{ minWidth: 180, flex: 1 }}
         />
+
         <Input
           placeholder='Описание'
           name='description'
@@ -45,6 +47,7 @@ export const AddTodo = () => {
           onChange={onChange}
           style={{ minWidth: 180, flex: 2 }}
         />
+
         <Button onClick={onClick} style={{ minWidth: 160, height: 40 }}>
           Добавить задачу
         </Button>

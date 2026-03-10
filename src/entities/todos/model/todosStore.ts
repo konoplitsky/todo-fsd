@@ -1,12 +1,11 @@
 import { create } from 'zustand/react';
 import { immer } from 'zustand/middleware/immer';
-import type { Todo, TodosState, TodosStore } from './types.ts';
-import { DEFAULT_TODOS } from '../../../mock.ts';
+import type { TodosState, TodosStore } from './types.ts';
 import { persist } from 'zustand/middleware';
 import type { PersistOptions } from 'zustand/middleware';
 
 const defaultTodos: TodosState = {
-  todos: DEFAULT_TODOS
+  todos: []
 };
 
 const persistOptions: PersistOptions<TodosStore, Omit<TodosStore, 'actions'>> = {
@@ -23,14 +22,15 @@ export const useTodosStore = create<TodosStore>()(
       ...defaultTodos,
 
       actions: {
-        addTodo: ({ name, description }: Omit<Todo, 'id' | 'checked'>) => {
+        addTodo: (todo: Todo) => {
           set((state) => {
-            state.todos.push({
-              id: state.todos.length + 1,
-              name,
-              description,
-              checked: false
-            });
+            state.todos.push(todo);
+          });
+        },
+
+        setTodos: (todos: Todo[]) => {
+          set((state) => {
+            state.todos = todos;
           });
         },
 
@@ -40,10 +40,10 @@ export const useTodosStore = create<TodosStore>()(
           });
         },
 
-        onCheckedTodo: (id: Todo['id']) => {
+        onCheckedTodo: (todoExternal) => {
           set((state) => {
             state.todos.forEach((todo) => {
-              if (todo.id === id) {
+              if (todo.id === todoExternal.id) {
                 todo.checked = !todo.checked;
               }
             });

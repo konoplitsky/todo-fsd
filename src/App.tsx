@@ -1,4 +1,4 @@
-import { TodosPage } from './pages/todos/TodosPage.tsx';
+import { TodosPage } from '@/pages/todos/TodosPage.tsx';
 
 const App = () => {
   return <TodosPage />;

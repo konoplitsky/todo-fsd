@@ -1,18 +1,12 @@
-export interface Todo {
-  id: number;
-  name: string;
-  description: string;
-  checked: boolean;
-}
-
 export interface TodosState {
   todos: Todo[];
 }
 
 export interface TodosActions {
-  addTodo: ({ name, description }: Omit<Todo, 'id' | 'checked'>) => void;
+  setTodos: (todos: Todo[]) => void;
+  addTodo: (todo: Todo) => void;
   onDeleteTodo: (id: Todo['id']) => void;
-  onCheckedTodo: (id: Todo['id']) => void;
+  onCheckedTodo: (todo: Todo) => void;
 }
 
 export interface TodosStore extends TodosState {

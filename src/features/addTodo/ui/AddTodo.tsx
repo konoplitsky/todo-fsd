@@ -1,6 +1,7 @@
 import { Input, Button, Flex, Box } from '@mantine/core';
-import { useTodosActions } from '../../../entities/todos/model';
+import { useTodos, useTodosActions } from '@/entities/todos/model';
 import { type ChangeEvent, useState } from 'react';
+import { usePostCreateTodoMutation } from '@/entities/todos/api';
 
 const TODO = {
   name: '',
@@ -9,10 +10,16 @@ const TODO = {
 
 export const AddTodo = () => {
   const [todo, setTodo] = useState(TODO);
+  const todos = useTodos();
+
+  console.log(todos);
+
+  const createTodo = usePostCreateTodoMutation();
   const { addTodo } = useTodosActions();
 
-  const onClick = () => {
-    addTodo(todo);
+  const onClick = async () => {
+    const result = await createTodo.mutateAsync(todo);
+    addTodo(result);
     setTodo(TODO);
   };
 

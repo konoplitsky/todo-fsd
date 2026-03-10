@@ -12,7 +12,6 @@ const defaultTodos: TodosState = {
 const persistOptions: PersistOptions<TodosStore, Omit<TodosStore, 'actions'>> = {
   name: 'todos-storage',
   partialize: (state) => {
-    // eslint-disable-next-line @typescript-eslint/no-unused-vars
     const { actions: _, ...rest } = state;
     return rest;
   }

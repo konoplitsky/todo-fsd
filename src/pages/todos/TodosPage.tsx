@@ -1,6 +1,6 @@
 import { Card, Container, Stack } from '@mantine/core';
-import { AddTodo } from '../../features/addTodo/ui/AddTodo.tsx';
-import { ToggleTodo } from '../../features/toggleTodo/ui/ToggleTodo.tsx';
+import { AddTodo } from '@/features/todo/addTodo/ui/AddTodo.tsx';
+import { ToggleTodo } from '@/features/todo/toggleTodo/ui/ToggleTodo.tsx';
 
 export const TodosPage = () => {
   return (

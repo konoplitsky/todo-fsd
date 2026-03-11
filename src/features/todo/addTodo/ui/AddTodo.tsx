@@ -2,7 +2,7 @@ import { useState } from 'react';
 import type { ChangeEvent } from 'react';
 
 import { Input, Button, Flex, Box } from '@mantine/core';
-import { useAddTodo } from '../model/useAddTodo';
+import { useAddTodo } from '@/features/todo/addTodo/model/useAddTodo.ts';
 
 type CreateTodo = Omit<Todo, 'id' | 'checked'>;
 

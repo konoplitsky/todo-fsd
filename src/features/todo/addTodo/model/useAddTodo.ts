@@ -1,4 +1,4 @@
-import { usePostCreateTodoMutation } from '@/entities/todos/api';
+import { usePostCreateTodoMutation } from '@/entities/todos/api/hooks';
 import { useTodosActions } from '@/entities/todos/model';
 
 interface UseAddTodoProps {

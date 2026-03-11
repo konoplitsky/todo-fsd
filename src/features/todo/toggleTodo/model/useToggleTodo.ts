@@ -1,4 +1,4 @@
-import { useDeleteTodoMutation, usePutCheckedTodoMutation } from '@/entities/todos/api';
+import { useDeleteTodoMutation, usePutCheckedTodoMutation } from '@/entities/todos/api/hooks';
 import { useTodosActions } from '@/entities/todos/model';
 
 interface ToggleTodoReturn {

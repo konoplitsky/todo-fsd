@@ -3,8 +3,8 @@ import { useEffect } from 'react';
 
 import { TodoCard } from '@/entities/todos';
 import { useTodos, useTodosActions } from '@/entities/todos/model';
-import { useGetTodosQuery } from '@/entities/todos/api';
-import { useToggleTodo } from '../model/useToggleTodo';
+import { useGetTodosQuery } from '@/entities/todos/api/hooks';
+import { useToggleTodo } from '@/features/todo/toggleTodo/model/useToggleTodo.ts';
 
 export const ToggleTodo = () => {
   const getTodos = useGetTodosQuery();

@@ -1,6 +1,6 @@
-import { Card, Checkbox, Group, Text, Button } from '@mantine/core';
-import type { Todo } from '../model/types';
 import { memo } from 'react';
+import { Card, Checkbox, Group, Text, Button } from '@mantine/core';
+import { IDS } from '@/shared/constants';
 
 interface TodoCardProps {
   todo: Todo;
@@ -10,6 +10,7 @@ interface TodoCardProps {
 
 export const TodoCard = memo(({ todo, onChecked, onDelete }: TodoCardProps) => (
   <Card
+    id={IDS.CARD.TODO}
     shadow='sm'
     withBorder
     p='md'
@@ -17,7 +18,7 @@ export const TodoCard = memo(({ todo, onChecked, onDelete }: TodoCardProps) => (
   >
     <Group justify='space-between' align='center' wrap='nowrap'>
       <Group gap='sm' align='center' wrap='nowrap' style={{ flex: 1 }}>
-        <Checkbox checked={todo.checked} onChange={onChecked} />
+        <Checkbox id={IDS.CHECKBOX.COMPLETED_TODO} checked={todo.checked} onChange={onChecked} />
         <div style={{ flex: 1 }}>
           <Text
             fw={500}
@@ -37,6 +38,7 @@ export const TodoCard = memo(({ todo, onChecked, onDelete }: TodoCardProps) => (
         </div>
       </Group>
       <Button
+        id={IDS.BUTTON.DELETE_TODO}
         color='red'
         variant='light'
         size='xs'

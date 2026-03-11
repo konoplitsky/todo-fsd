@@ -3,6 +3,7 @@ import type { ChangeEvent } from 'react';
 
 import { Input, Button, Flex, Box } from '@mantine/core';
 import { useAddTodo } from '@/features/todo/addTodo/model/useAddTodo.ts';
+import { IDS } from '@/shared/constants';
 
 type CreateTodo = Omit<Todo, 'id' | 'checked'>;
 
@@ -33,6 +34,7 @@ export const AddTodo = () => {
     <Box w='100%' style={{ maxWidth: 700, margin: '0 auto', marginBottom: 24 }}>
       <Flex gap={12} align='center' justify='center' wrap='wrap'>
         <Input
+          id={IDS.INPUT.NAME}
           placeholder='Название задачи'
           name='name'
           value={todo.name}
@@ -41,6 +43,7 @@ export const AddTodo = () => {
         />
 
         <Input
+          id={IDS.INPUT.DESCRIPTION}
           placeholder='Описание'
           name='description'
           value={todo.description}
@@ -48,7 +51,7 @@ export const AddTodo = () => {
           style={{ minWidth: 180, flex: 2 }}
         />
 
-        <Button onClick={onClick} style={{ minWidth: 160, height: 40 }}>
+        <Button id={IDS.BUTTON.CREATE_TODO} onClick={onClick} style={{ minWidth: 160, height: 40 }}>
           Добавить задачу
         </Button>
       </Flex>

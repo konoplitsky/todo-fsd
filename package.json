@@ -8,9 +8,9 @@
     "build": "tsc -b && vite build",
     "lint": "eslint .",
     "preview": "vite preview",
-    "e2e-test": "npx playwright test --headed",
+    "e2e-test": "pnpm dlx playwright test --headed",
     "e2e-ui-test": "pnpm exec playwright test --ui",
-    "e2e-codegen-test": "npx playwright codegen localhost:5173"
+    "e2e-codegen-test": "pnpm dlx playwright codegen localhost:5173"
   },
   "dependencies": {
     "@mantine/core": "^8.3.16",

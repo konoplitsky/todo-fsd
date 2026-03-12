@@ -1,41 +1,25 @@
-import { MantineProvider } from '@mantine/core';
 import '@mantine/core/styles.css';
 import { TodoCard } from '@/entities/todos';
-
-const todo = {
-  id: 1,
-  name: '23232323 ',
-  description: '32323',
-  checked: false
-};
+import type { Meta } from '@storybook/react-vite';
 
 const meta = {
-  title: 'Example/Button',
+  title: 'UI/TodoCard',
   component: TodoCard,
-  decorators: [
-    (Story) => (
-      <MantineProvider>
-        <Story />
-      </MantineProvider>
-    )
-  ],
   parameters: {
     layout: 'centered'
   },
-  tags: ['autodocs'],
-  argTypes: {
-    backgroundColor: { control: 'color' }
-  },
-  args: { todo }
-};
+  tags: ['autodocs']
+} satisfies Meta<typeof TodoCard>;
 
 export default meta;
 
 export const Card = {
   args: {
-    id: 1,
-    name: '23232323 ',
-    description: '32323',
-    checked: false
+    todo: {
+      id: 1,
+      name: 'Покормить собаку ',
+      description: 'Вечером в 18:00',
+      checked: false
+    }
   }
 };
